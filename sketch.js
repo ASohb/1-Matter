@@ -103,3 +103,17 @@ function draw() {
     ellipse(bolinha.position.x, bolinha.position.y, bolinha.circleRadius);
   }
 }
+
+
+/*  restitution: 1: Define o quão "elástica" a bola é ao bater em alguma superfície. Um valor de 1 significa que ela vai quicar sem perder velocidade (um quique perfeitamente elástico).
+frictionAir: 0.1: Define a resistência do ar que afeta a bola enquanto ela se move. Um valor de 0.1 indica que há uma leve resistência, fazendo com que ela perca velocidade aos poucos.
+Se você aumentar ou diminuir esses valores:
+
+restitution:
+
+Aumentar (acima de 1): A bola vai quicar com mais força do que bateu, como se estivesse ganhando velocidade ao quicar.
+Diminuir (abaixo de 1): A bola vai perder energia ao quicar, quicando cada vez menos até parar.
+frictionAir:
+
+Aumentar (acima de 0.1): A bola vai desacelerar mais rápido no ar, como se estivesse enfrentando mais resistência.
+Diminuir (abaixo de 0.1): A bola vai desacelerar mais devagar, quase sem perder velocidade enquanto se move.   */
