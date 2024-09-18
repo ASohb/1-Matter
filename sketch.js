@@ -33,6 +33,8 @@ function setup() {
   motor = Motor.create();
   mundo = motor.world;
 
+  motor.world.gravity.y = 10;//Muda a gravidade do mundo
+
   var opcoes_bola = {
     restitution: 1,
     frictionAir: 0.1
