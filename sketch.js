@@ -1,3 +1,12 @@
+/*
+var nomes= ["Tiago", "Lenita", "Jefferson"];
+nomes.push("Jubliscleudo")
+nomes.push("Josinaldo")
+nomes.push("XeroxPhotoscopiadora")
+nomes.pop()
+alert(nomes);
+*/
+
 var Motor = Matter.Engine;
 var Mundo = Matter.World;
 var Corpos = Matter.Bodies;
@@ -7,21 +16,22 @@ var motor;
 var mundo;
 var bola;
 var chão;
+
 var pedra;
 var parede;
 
 var bolinhas = [];
-var limite_bolinhas = 25; // Limite de bolinhas para evitar sobrecarga
+var limite_bolinhas = 100; // Limite de bolinhas para evitar sobrecarga
 
 
 
 function setup() {
   createCanvas(400, 400);
 
+
+
   motor = Motor.create();
   mundo = motor.world;
-
- // motor.world.gravity.y = 10;   //Muda a gravidade do mundo
 
   var opcoes_bola = {
     restitution: 1,
@@ -76,7 +86,7 @@ function draw() {
 
   // Desenhar e colorir a bola
   fill(255, 0, 0);  // Vermelho
-  ellipse(bola.position.x, bola.position.y, 20);
+  ellipse(bola.position.x, bola.position.y, 50);
   
   // Desenhar e colorir o chão
   fill(19, 24, 125);  // Azul
@@ -102,20 +112,20 @@ function draw() {
   for (var j = 0; j < bolinhas.length; j++) {
     var bolinha = bolinhas[j];
     fill(random(100, 255), random(100, 255), random(100, 255));  // Cores aleatórias
-    ellipse(bolinha.position.x, bolinha.position.y, bolinha.circleRadius);
+    ellipse(bolinha.position.x, bolinha.position.y, bolinha.circleRadius);//circleRadius é o correto porque a bolinha só tem o raio.
   }
+
+    // Controles da bola - Corpo.applyForce(bola, posição, força) aplica uma pequena força à bola, permitindo que ela se mova nas direções correspondentes.
+    if (keyIsDown(LEFT_ARROW)) {
+      Corpo.applyForce(bola, { x: bola.position.x, y: bola.position.y }, { x: -0.005, y: 0 });
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+      Corpo.applyForce(bola, { x: bola.position.x, y: bola.position.y }, { x: 0.005, y: 0 });
+    }
+    if (keyIsDown(UP_ARROW)) {
+      Corpo.applyForce(bola, { x: bola.position.x, y: bola.position.y }, { x: 0, y: -0.005 });
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      Corpo.applyForce(bola, { x: bola.position.x, y: bola.position.y }, { x: 0, y: 0.005 });
+    }
 }
-
-
-/*  restitution: 1: Define o quão "elástica" a bola é ao bater em alguma superfície. Um valor de 1 significa que ela vai quicar sem perder velocidade (um quique perfeitamente elástico).
-frictionAir: 0.1: Define a resistência do ar que afeta a bola enquanto ela se move. Um valor de 0.1 indica que há uma leve resistência, fazendo com que ela perca velocidade aos poucos.
-Se você aumentar ou diminuir esses valores:
-
-restitution:
-
-Aumentar (acima de 1): A bola vai quicar com mais força do que bateu, como se estivesse ganhando velocidade ao quicar.
-Diminuir (abaixo de 1): A bola vai perder energia ao quicar, quicando cada vez menos até parar.
-frictionAir:
-
-Aumentar (acima de 0.1): A bola vai desacelerar mais rápido no ar, como se estivesse enfrentando mais resistência.
-Diminuir (abaixo de 0.1): A bola vai desacelerar mais devagar, quase sem perder velocidade enquanto se move.   */
